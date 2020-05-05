@@ -5,7 +5,7 @@
 #include "tbb/parallel_sort.h"
 #include "./suslov_e_radix_tbb.h"
 
-TEST(suslov_e_radix_sort_for_double, Test_on_100_stdsort) {
+TEST(suslov_e_radix_sort_for_double, Test_on_100_tbbsort) {
     int size = 100;
     double* Array = getRandomArray(size);
     double* Array_copy = new double[size];
@@ -14,7 +14,7 @@ TEST(suslov_e_radix_sort_for_double, Test_on_100_stdsort) {
         Array_copy[i] = Array[i];
     }
     LSDParallelSortDouble(Array, size, 8);
-    std::sort(Array_copy, Array_copy + size);
+    tbb::parallel_sort(Array_copy, Array_copy + size);
     ASSERT_EQ(1, CompareArrays(Array, Array_copy, size));
 }
 

@@ -1,6 +1,6 @@
 // Copyright 2020 Suslov Egor
-#ifndef MODULES_TEST_TASKS_TEST_TBB_OPS_TBB_H_
-#define MODULES_TEST_TASKS_TEST_TBB_OPS_TBB_H_
+#ifndef MODULES_TASK_3_SUSLOV_E_RADIX_TBB_SUSLOV_E_RADIX_TBB_H_
+#define MODULES_TASK_3_SUSLOV_E_RADIX_TBB_SUSLOV_E_RADIX_TBB_H_
 
 #include <vector>
 #include <string>
@@ -16,5 +16,6 @@ class LSDParallelSorter;
 void LSDParallelSortDouble(double* inp, int size, int nThreads);
 bool CompareArrays(double* mas, double* Mas, int size);
 
-#endif  // MODULES_TEST_TASKS_TEST_TBB_OPS_TBB_H_
+#endif  // MODULES_TASK_3_SUSLOV_E_RADIX_TBB_SUSLOV_E_RADIX_TBB_H_
+
 

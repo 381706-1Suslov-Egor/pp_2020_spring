@@ -42,8 +42,7 @@ void CountingSortByte(double* inp, double* out, int byteNum, int size) {
             out[counter[mas[8 * i + byteNum]]] = inp[i];
             counter[mas[8 * i + byteNum]]++;
         }
-    }
-    else {
+    } else {
         unsigned char* mas = (unsigned char*)inp;
         int counter[256];
         int tem = 0;
@@ -80,8 +79,7 @@ void CountingSortByte(double* inp, double* out, int byteNum, int size) {
             out[counter[mas[8 * i + byteNum]]] = inp[i];
             if (mas[8 * i + byteNum] >= 128) {
                 counter[mas[8 * i + byteNum]]--;
-            }
-            else {
+            } else {
                 counter[mas[8 * i + byteNum]]++;
             }
         }
@@ -105,10 +103,12 @@ bool CompareArrays(double* mas, double* Mas, int size) {
 class EvenSplitter :public tbb::task
 {
 private:
+
     double* mas;
     double* tmp;
     int size1;
     int size2;
+
 public:
     EvenSplitter(double* _mas, double* _tmp, int _size1,
         int _size2) : mas(_mas), tmp(_tmp),
@@ -146,11 +146,14 @@ public:
 class OddSplitter :public tbb::task
 {
 private:
+
     double* mas;
     double* tmp;
     int size1;
     int size2;
+
 public:
+
     OddSplitter(double* _mas, double* _tmp, int _size1,
         int _size2) : mas(_mas), tmp(_tmp),
         size1(_size1), size2(_size2)
@@ -186,9 +189,12 @@ public:
 class SimpleComparator
 {
 private:
+
     double* mas;
     int size;
+
 public:
+
     SimpleComparator(double* _mas, int _size) : mas(_mas), size(_size)
     {}
     void operator()(const tbb::blocked_range<int>& r) const
@@ -207,11 +213,14 @@ public:
 class LSDParallelSorter :public tbb::task
 {
 private:
+
     double* mas;
     double* tmp;
     int size;
     int portion;
+
 public:
+
     LSDParallelSorter(double* _mas, double* _tmp, int _size,
         int _portion) : mas(_mas), tmp(_tmp),
         size(_size), portion(_portion)
@@ -237,7 +246,6 @@ public:
             set_ref_count(3);
             spawn(splitter1);
             spawn_and_wait_for_all(splitter2);
-
             tbb::parallel_for(tbb::blocked_range<int>(1, (size + 1) / 2),
                 SimpleComparator(mas, size));
         }
