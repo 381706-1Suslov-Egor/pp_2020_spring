@@ -101,7 +101,6 @@ bool CompareArrays(double* mas, double* Mas, int size) {
 }
 
 class EvenSplitter :public tbb::task {
-
 private:
     double* mas;
     double* tmp;
@@ -109,10 +108,7 @@ private:
     int size2;
 
 public:
-    EvenSplitter(double* _mas, double* _tmp, int _size1,
-        int _size2) : mas(_mas), tmp(_tmp),
-        size1(_size1), size2(_size2)
-    {}
+    EvenSplitter(double* _mas, double* _tmp, int _size1, int _size2) : mas(_mas), tmp(_tmp), size1(_size1), size2(_size2) {}
     task* execute()
     {
         for (int i = 0; i < size1; i += 2)
@@ -143,7 +139,6 @@ public:
 };
 
 class OddSplitter :public tbb::task {
-
 private:
     double* mas;
     double* tmp;
@@ -151,9 +146,7 @@ private:
     int size2;
 
 public:
-    OddSplitter(double* _mas, double* _tmp, int _size1,
-        int _size2) : mas(_mas), tmp(_tmp),
-        size1(_size1), size2(_size2)
+    OddSplitter(double* _mas, double* _tmp, int _size1, int _size2) : mas(_mas), tmp(_tmp), size1(_size1), size2(_size2)
     {}
     task* execute() {
         for (int i = 1; i < size1; i += 2)
@@ -183,7 +176,6 @@ public:
 };
 
 class SimpleComparator {
-
 private:
     double* mas;
     int size;
@@ -202,7 +194,6 @@ public:
 };
 
 class LSDParallelSorter :public tbb::task {
-
 private:
     double* mas;
     double* tmp;
@@ -210,8 +201,7 @@ private:
     int portion;
 
 public:
-    LSDParallelSorter(double* _mas, double* _tmp, int _size, int _portion) : mas(_mas), tmp(_tmp),
-        size(_size), portion(_portion) {}
+    LSDParallelSorter(double* _mas, double* _tmp, int _size, int _portion) : mas(_mas), tmp(_tmp), size(_size), portion(_portion) {}
     task* execute() {
         if (size <= portion) {
             LSDSortDouble(mas, tmp, size);
