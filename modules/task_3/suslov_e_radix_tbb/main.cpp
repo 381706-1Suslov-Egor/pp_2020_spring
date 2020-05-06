@@ -49,7 +49,7 @@ TEST(suslov_e_radix_sort_for_double, Test_on_10001_tbbsort) {
 }
 
 TEST(suslov_e_radix_sort_for_double, Test_on_11111_tbbsort) {
-    int size = 11111;
+    int size = 11211;
     double* Array = getRandomArray(size);
     double* Array_copy = new double[size];
     double* tmp = new double[size];
