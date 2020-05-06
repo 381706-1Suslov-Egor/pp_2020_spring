@@ -100,10 +100,9 @@ bool CompareArrays(double* mas, double* Mas, int size) {
     return true;
 }
 
-class EvenSplitter :public tbb::task
-{
-private:
+class EvenSplitter :public tbb::task {
 
+private:
     double* mas;
     double* tmp;
     int size1;
@@ -143,23 +142,20 @@ public:
     }
 };
 
-class OddSplitter :public tbb::task
-{
-private:
+class OddSplitter :public tbb::task {
 
+private:
     double* mas;
     double* tmp;
     int size1;
     int size2;
 
 public:
-
     OddSplitter(double* _mas, double* _tmp, int _size1,
         int _size2) : mas(_mas), tmp(_tmp),
         size1(_size1), size2(_size2)
     {}
-    task* execute()
-    {
+    task* execute() {
         for (int i = 1; i < size1; i += 2)
             tmp[i] = mas[i];
         double* mas2 = mas + size1;
@@ -186,21 +182,16 @@ public:
     }
 };
 
-class SimpleComparator
-{
-private:
+class SimpleComparator {
 
+private:
     double* mas;
     int size;
 
 public:
-
-    SimpleComparator(double* _mas, int _size) : mas(_mas), size(_size)
-    {}
-    void operator()(const tbb::blocked_range<int>& r) const
-    {
+    SimpleComparator(double* _mas, int _size) : mas(_mas), size(_size ) {}
+    void operator()(const tbb::blocked_range<int>& r) const {
         int begin = r.begin(), end = r.end();
-
         for (int i = begin; i < end; i++)
             if (mas[2 * i] < mas[2 * i - 1]) {
                 double _tmp = mas[2 * i - 1];
@@ -210,23 +201,18 @@ public:
     }
 };
 
-class LSDParallelSorter :public tbb::task
-{
-private:
+class LSDParallelSorter :public tbb::task {
 
+private:
     double* mas;
     double* tmp;
     int size;
     int portion;
 
 public:
-
-    LSDParallelSorter(double* _mas, double* _tmp, int _size,
-        int _portion) : mas(_mas), tmp(_tmp),
-        size(_size), portion(_portion)
-    {}
-    task* execute()
-    {
+    LSDParallelSorter(double* _mas, double* _tmp, int _size, int _portion) : mas(_mas), tmp(_tmp),
+        size(_size), portion(_portion) {}
+    task* execute() {
         if (size <= portion) {
             LSDSortDouble(mas, tmp, size);
         } else {
@@ -253,8 +239,7 @@ public:
     }
 };
 
-void LSDParallelSortDouble(double* inp, int size, int nThreads)
-{
+void LSDParallelSortDouble(double* inp, int size, int nThreads) {
     double* out = new double[size];
     int portion = size / nThreads;
     if (size % nThreads != 0)
