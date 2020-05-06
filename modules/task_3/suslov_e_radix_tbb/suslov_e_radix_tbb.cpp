@@ -101,14 +101,15 @@ bool CompareArrays(double* mas, double* Mas, int size) {
 }
 
 class EvenSplitter :public tbb::task {
-private:
+ private:
     double* mas;
     double* tmp;
     int size1;
     int size2;
 
-public:
-    EvenSplitter(double* _mas, double* _tmp, int _size1, int _size2) : mas(_mas), tmp(_tmp), size1(_size1), size2(_size2) {}
+ public:
+    EvenSplitter(double* _mas, double* _tmp, int _size1, int _size2) : mas(_mas), tmp(_tmp), size1(_size1), size2(_size2)
+    {}
     task* execute()
     {
         for (int i = 0; i < size1; i += 2)
@@ -128,24 +129,25 @@ public:
             }
             i += 2;
         }
-        if (a == size1)
+        if (a == size1) {
             for (int j = b; j < size2; j += 2, i += 2)
                 mas[i] = mas2[j];
-        else
+        } else {
             for (int j = a; j < size1; j += 2, i += 2)
                 mas[i] = tmp[j];
+        }
         return NULL;
     }
 };
 
 class OddSplitter :public tbb::task {
-private:
+ private:
     double* mas;
     double* tmp;
     int size1;
     int size2;
 
-public:
+ public:
     OddSplitter(double* _mas, double* _tmp, int _size1, int _size2) : mas(_mas), tmp(_tmp), size1(_size1), size2(_size2)
     {}
     task* execute() {
@@ -165,22 +167,23 @@ public:
             }
             i += 2;
         }
-        if (a == size1)
+        if (a == size1) {
             for (int j = b; j < size2; j += 2, i += 2)
                 mas[i] = mas2[j];
-        else
+        } else {
             for (int j = a; j < size1; j += 2, i += 2)
                 mas[i] = tmp[j];
+        }
         return NULL;
     }
 };
 
 class SimpleComparator {
-private:
+ private:
     double* mas;
     int size;
 
-public:
+ public:
     SimpleComparator(double* _mas, int _size) : mas(_mas), size(_size ) {}
     void operator()(const tbb::blocked_range<int>& r) const {
         int begin = r.begin(), end = r.end();
@@ -194,14 +197,15 @@ public:
 };
 
 class LSDParallelSorter :public tbb::task {
-private:
+ private:
     double* mas;
     double* tmp;
     int size;
     int portion;
 
-public:
-    LSDParallelSorter(double* _mas, double* _tmp, int _size, int _portion) : mas(_mas), tmp(_tmp), size(_size), portion(_portion) {}
+ public:
+    LSDParallelSorter(double* _mas, double* _tmp, int _size, int _portion) : mas(_mas), tmp(_tmp), size(_size), portion(_portion)
+    {}
     task* execute() {
         if (size <= portion) {
             LSDSortDouble(mas, tmp, size);

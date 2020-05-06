@@ -13,7 +13,7 @@ TEST(suslov_e_radix_sort_for_double, Test_on_100_tbbsort) {
     for (int i = 0; i < size; i++) {
         Array_copy[i] = Array[i];
     }
-    LSDParallelSortDouble(Array, size, 8);
+    LSDParallelSortDouble(Array, size, 2);
     tbb::parallel_sort(Array_copy, Array_copy + size);
     ASSERT_EQ(1, CompareArrays(Array, Array_copy, size));
 }
