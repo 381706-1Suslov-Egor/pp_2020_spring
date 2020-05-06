@@ -108,10 +108,10 @@ class EvenSplitter :public tbb::task {
     int size2;
 
  public:
-    EvenSplitter(double* _mas, double* _tmp, int _size1, int _size2) : mas(_mas), tmp(_tmp), size1(_size1), size2(_size2)
+    EvenSplitter(double* _mas, double* _tmp, int _size1, int _size2) : 
+        mas(_mas), tmp(_tmp), size1(_size1), size2(_size2)
     {}
-    task* execute()
-    {
+    task* execute() {
         for (int i = 0; i < size1; i += 2)
             tmp[i] = mas[i];
         double* mas2 = mas + size1;
@@ -122,8 +122,7 @@ class EvenSplitter :public tbb::task {
             if (tmp[a] <= mas2[b]) {
                 mas[i] = tmp[a];
                 a += 2;
-            }
-            else {
+            } else {
                 mas[i] = mas2[b];
                 b += 2;
             }
@@ -204,7 +203,8 @@ class LSDParallelSorter :public tbb::task {
     int portion;
 
  public:
-    LSDParallelSorter(double* _mas, double* _tmp, int _size, int _portion) : mas(_mas), tmp(_tmp), size(_size), portion(_portion)
+    LSDParallelSorter(double* _mas, double* _tmp, int _size, int _portion) :
+        mas(_mas), tmp(_tmp), size(_size), portion(_portion)
     {}
     task* execute() {
         if (size <= portion) {
