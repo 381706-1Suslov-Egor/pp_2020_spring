@@ -108,7 +108,7 @@ class EvenSplitter :public tbb::task {
     int size2;
 
  public:
-    EvenSplitter(double* _mas, double* _tmp, int _size1, int _size2) : 
+    EvenSplitter(double* _mas, double* _tmp, int _size1, int _size2) :
         mas(_mas), tmp(_tmp), size1(_size1), size2(_size2)
     {}
     task* execute() {
