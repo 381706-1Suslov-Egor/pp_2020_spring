@@ -168,7 +168,7 @@ offset[j] = counter[j-1] + offset[j-1]
 
 
 \begin{center}
-\includegraphics[width=1\textwidth]{IEEE.png}
+\includegraphics[width=1\textwidth]{../../../../modules/reports/suslov_e_radix_with_batchers_merge/IEEE.png}
 \captionof{figure}{Хранение вещественных чисел по стандарту IEEE 754}\label{visina1}
 \end{center}
 
@@ -190,7 +190,7 @@ offset[j] = counter[j-1] + offset[j-1]
 \par Чтобы массив стал окончательно отсортированным, достаточно сравнить пары элементов, стоящие на нечетной и чѐтной позициях. Первый и последний элементы массива проверять не надо, т.к. они являются минимальным и максимальным элементов массивов.
 \par Четно-нечетное слияние Бэтчера позволяет задействовать 2 потока при слиянии двух упорядоченных массивов. В этом случае слияние n массивов могут выполнять n параллельных потоков. На следующем шаге слияние n/2 полученных массивов будут выполнять n/2 потоков и т.д. На последнем шаге два массива будут сливать 2 потока.
 \begin{center}
-\includegraphics[width=1\textwidth]{Batcher_merge.png}
+\includegraphics[width=1\textwidth]{../../../../modules/reports/suslov_e_radix_with_batchers_merge/Batcher_merge.png}
 \captionof{figure}{Четно-нечетное слияние Бэтчера}\label{visina1}
 \end{center}
 \newpage
@@ -453,12 +453,12 @@ std::thread & 3,9185 \\
 \par По итогу, по сравнению с последовательной реализацией алгоритма, OpenMP дает усредненное ускорение (на оптимальном количпстве потоков) в 2.766, ТВВ в 3.352, std::thread в 3,155 раза.
 
 \begin{center}
-\includegraphics[width=1\textwidth]{TBB.png}
+\includegraphics[width=1\textwidth]{../../../../modules/reports/suslov_e_radix_with_batchers_merge/TBB.png}
 \captionof{figure}{Распределение нагрузки между потоками в TBB}\label{visina1}
 \end{center}
 
 \begin{center}
-\includegraphics[width=1\textwidth]{thread_.png}
+\includegraphics[width=1\textwidth]{../../../../modules/reports/suslov_e_radix_with_batchers_merge/thread_.png}
 \captionof{figure}{Распределение нагрузки между потоками в std::threads}\label{visina1}
 \end{center}
 
