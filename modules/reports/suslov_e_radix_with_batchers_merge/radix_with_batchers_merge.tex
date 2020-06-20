@@ -7,16 +7,20 @@
 \usepackage[14pt]{extsizes}
 \usepackage{listings}
 \usepackage{color}
-\usepackage{subcaption}
 \usepackage{geometry}
+\usepackage{subcaption}
 \usepackage{enumitem}
 \usepackage{multirow}
 \usepackage{graphicx}
 \usepackage{indentfirst}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
 
 \setlength{\parskip}{3mm}
 \geometry{a4paper,top=20mm,bottom=20mm,left=25mm,right=15mm}
 \setlist{nolistsep, itemsep=0.5cm,parsep=0pt}
+
 
 \lstset{
   basicstyle=\fontsize{13}{13}\ttfamily,
@@ -29,6 +33,8 @@
   keepspaces=true,
   keywordstyle=\color{blue},
   language=c++,
+  rulecolor=\color{black!30},
+  backgroundcolor=\color{gray!10},
   numbers=none,
   numbersep=1pt,
   numberstyle=\tiny\color{blue},
@@ -37,9 +43,7 @@
   title=\lstname
 }
 
-\makeatletter
-\renewcommand\@biblabel[1]{#1.\hfil}
-\makeatother
+
 
 \begin{document}
 
